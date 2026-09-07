@@ -1,37 +1,51 @@
+marks = []
+
 name = input("Enter student name: ")
-python = int(input("Enter marks of Python: "))
-database = int(input("Enter marks of Data Base: "))
-maths = int(input("Enter marks of Mathematics: "))
-total = python + database + maths
-percentage = (total/300)*100
 
-if python < 0 or  python > 100:
-    print("Invalid marks! Marks must be between 0 and 100.")
-elif database < 0 or  database > 100:
-    print("Invalid marks! Marks must be between 0 and 100.")
-elif maths < 0 or  maths > 100:
-    print("Invalid marks! Marks must be between 0 and 100.")
-else:    
-    if percentage >= 90:
+marks.append(int(input("Enter marks of Python: ")))
+marks.append(int(input("Enter marks of Data Base: ")))
+marks.append(int(input("Enter marks of Mathematics: ")))
+
+valid = True
+
+for mark in marks:
+    if mark < 0 or mark > 100:
+        print("Invalid marks, Enter marks between 0 to 100")
+        valid = False
+
+if valid:
+    total = sum(marks)
+    print("Total marks:", total)
+
+    avg = sum(marks) / len(marks)
+    print("Average marks:", avg)
+
+    maxi = max(marks)
+    print("Maximum marks:", maxi)
+
+    mini = min(marks)
+    print("Minimum marks:", mini)
+
+    if avg >= 90:
         grade = "A"
-    elif percentage >= 80:
+    elif avg >= 80:
         grade = "B"
-
-    elif percentage >= 70:
+    elif avg >= 70:
         grade = "C"
-
-    elif percentage >= 60:
+    elif avg >= 60:
         grade = "D"
-
     else:
-            grade = "F"
+        grade = "F"
 
-    print("\n-----Student Marks Analyzer v1.0.-----")
-    print(f"Student: {name}")
-    print(f"Total Marks: {total}")
-    print(f"Percentage: {percentage :.2f}%")
-    print(f"Grade : {grade}")
+    print("Your grade is:", grade)
+    
+    passed = 0
+    failed = 0
 
-
-
-
+    for mark in marks:
+        if mark >= 50:
+            passed += 1 
+        else:
+            failed +=1 
+    print("Passed Subjects: " , passed) 
+    print("Failed Subjects: " , failed)         
